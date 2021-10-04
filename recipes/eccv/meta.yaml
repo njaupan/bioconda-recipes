@@ -1,0 +1,52 @@
+{% set name = "ecc_finder" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_url: https://github.com/njaupan/ecc_finder.git
+  sha256: efa7c3c82ae3826eb9e4a2ee768a65472151e83779c72f1cfcd8d741ca3cb554
+  
+build:
+  number: 2
+  noarch: generic
+
+requirements:
+  build:
+    - python >3.6
+    - setuptools
+  run:
+    - argparse
+    - python >3.6
+    - pandas
+    - pysam
+    - numpy
+    - samtools
+    - bedtools
+    - pybedtools
+    - minimap2
+    - bwa
+    - tidehunter
+    - genrich
+    - seqtk
+    - bioawk
+    - unicycler
+    - matplotlib
+    - cd-hit
+
+test:
+  imports:
+    - eccFinder_lib
+  commands:
+    - ecc_finder.py -h > /dev/null
+
+
+about:
+  home: https://github.com/njaupan/ecc_finder
+  license: GPLv3
+  license_family: GPL
+  license_file: LICENSE
+  summary: A tool to detect eccDNA loci
+  dev_url: https://github.com/njaupan/ecc_finder
